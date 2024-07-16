@@ -1,0 +1,35 @@
+//Año del Pedido
+LEFT([Fecha Del Envio],4)
+
+//Mes del  Pedido
+MID([Fecha Del Envio],5,2)
+
+//Día del  Pedido
+RIGHT([Fecha Del Envio],2)
+
+//Nombre Mes
+CASE MID([Fecha Del Envio],5,2)
+			WHEN '01' THEN 'enero'
+			WHEN '02' THEN 'febrero'
+			WHEN '03' THEN 'marzo'
+			WHEN '04' THEN 'abril'
+			WHEN '05' THEN 'mayo'
+			WHEN '06' THEN 'junio'
+			WHEN '07' THEN 'julio'
+			WHEN '08' THEN 'agosto'
+			WHEN '09' THEN 'septiembre'
+			WHEN '10' THEN 'octubre'
+			WHEN '11' THEN 'noviembre'
+			WHEN '12' THEN 'diciembre'
+END
+
+//Fecha Pedido
+DATEPARSE(
+			'dd.MM.yyyy',
+			RIGHT([Fecha Del Envio],2)
+			+'.'+
+			MID([Fecha Del Envio],5,2)
+			+'.'+
+			LEFT([Fecha Del Envio],4)
+)
+
